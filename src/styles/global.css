@@ -1,0 +1,150 @@
+:root {
+  --bg: #f1f5f9;
+  --fg: #1f2937;
+  --bg-container: #ffffff;
+  --border: #d1d5db;
+  --highlight: #10b981;
+  --highlight-dark: #059669;
+}
+
+.dark {
+  --bg: #0f172a;
+  --fg: #f1f5f9;
+  --bg-container: #1e293b;
+  --border: #334155;
+  --highlight: #10b981;
+  --highlight-dark: #059669;
+}
+
+/* Reset */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--fg);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  transition: background-color 0.4s ease, color 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.container {
+  width: 100%;
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 30px;
+  background-color: var(--bg-container);
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  animation: fadeIn 0.6s ease;
+}
+
+
+h1, h2, h3 {
+  color: var(--fg);
+  margin-bottom: 15px;
+}
+
+input, select, textarea {
+  width: 96.5%;
+  padding: 12px;
+  font-size: 1rem;
+  margin-top: 6px;
+  margin-bottom: 20px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background-color: transparent;
+  color: var(--fg);
+  transition: all 0.3s;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: var(--highlight);
+  outline: none;
+}
+
+button {
+  padding: 12px 24px;
+  background-color: var(--highlight);
+  color: white;
+  border: none;
+  font-size: 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+button:hover {
+  background-color: var(--highlight-dark);
+}
+
+nav {
+  width: 100%;
+  max-width: 800px;
+  padding: 0 30px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 30px auto 0 auto;
+  background-color: var(--bg-container);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+
+nav .links {
+  display: flex;
+  gap: 20px;
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--highlight);
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+nav a:hover {
+  color: var(--highlight-dark);
+}
+
+.planta-card {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+img {
+  max-width: 100%;
+  border-radius: 12px;
+  margin-top: 10px;
+  border: 2px solid var(--border);
+}
+
+/* Animações */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.darkmodebtn {
+   margin-left: 1%;
+}
