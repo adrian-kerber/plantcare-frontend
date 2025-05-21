@@ -58,7 +58,7 @@ export function DetalhePlanta() {
       <p><strong>Local:</strong> {planta.local}</p>
       <p><strong>Data de aquisição:</strong> {new Date(planta.dataAquisicao).toLocaleDateString()}</p>
       <p><strong>Observações:</strong> {planta.observacoes || "-"}</p>
-      <div className="container">
+      <div className="container-int">
       <h2>📝 Agendar Cuidado</h2>
       <form onSubmit={adicionarCuidado}>
         <label>Tipo:</label>
@@ -76,7 +76,7 @@ export function DetalhePlanta() {
         <button type="submit">Agendar</button>
       </form>
       </div>
-      <div className="container">
+      <div className="container-int">
       <h2>📋 Histórico de Cuidados</h2>
       <ul>
   {planta.cuidados.map(c => (

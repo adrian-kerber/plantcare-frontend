@@ -162,3 +162,12 @@ li button {
 li button:hover {
   background-color: var(--highlight-dark);
 }
+.container-int {
+  width: 100%;
+  max-width: 800px;
+  padding: 30px;
+  background-color: var(--bg-container);
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  animation: fadeIn 0.6s ease;
+}
