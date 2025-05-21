@@ -51,14 +51,14 @@ export function DetalhePlanta() {
   if (!planta) return <p>Carregando...</p>;
 
   return (
-    <div style={{ padding: 20 }}>
+    <div className="container">
       <h1>{planta.nome}</h1>
       {planta.fotoUrl && <img src={planta.fotoUrl} alt={planta.nome} style={{ maxWidth: "250px" }} />}
       <p><strong>Tipo:</strong> {planta.tipo}</p>
       <p><strong>Local:</strong> {planta.local}</p>
       <p><strong>Data de aquisição:</strong> {new Date(planta.dataAquisicao).toLocaleDateString()}</p>
       <p><strong>Observações:</strong> {planta.observacoes || "-"}</p>
-
+      <div className="container">
       <h2>📝 Agendar Cuidado</h2>
       <form onSubmit={adicionarCuidado}>
         <label>Tipo:</label>
@@ -68,13 +68,15 @@ export function DetalhePlanta() {
           <option value="adubação">Adubação</option>
           <option value="poda">Poda</option>
         </select>
+        
 
         <label>Data:</label>
         <input type="date" value={novoCuidado.data} onChange={e => setNovoCuidado({ ...novoCuidado, data: e.target.value })} required />
 
         <button type="submit">Agendar</button>
       </form>
-
+      </div>
+      <div className="container">
       <h2>📋 Histórico de Cuidados</h2>
       <ul>
   {planta.cuidados.map(c => (
@@ -100,7 +102,7 @@ export function DetalhePlanta() {
     </li>
   ))}
 </ul>
-
+</div>
     </div>
   );
 }
