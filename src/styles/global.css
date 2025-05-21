@@ -22,7 +22,7 @@
 *, *::before, *::after {
   margin: 0;
   padding: 0;
-  align-items: center;
+  box-sizing: border-box;
 }
 
 body {
@@ -33,33 +33,39 @@ body {
   margin: 0;
   padding: 0;
   transition: background-color 0.4s ease, color 0.4s ease;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-items: center;
+  overflow-x: hidden;
 }
 
-
+/* Containers */
 .container {
   width: 100%;
-  max-width: 800px;
+  max-width: 740px;
   margin: 20px auto;
   padding: 30px;
   background-color: var(--bg-container);
   border-radius: 16px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
   animation: fadeIn 0.6s ease;
-  justify-items: center;
 }
 
+.container-int {
+  margin-top: 2%;
+  padding: 30px;
+  background-color: var(--bg-container-int);
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  animation: fadeIn 0.6s ease;
+}
 
+/* Tipografia */
 h1, h2, h3 {
   color: var(--fg);
   margin-bottom: 15px;
+  text-align: center;
 }
 
 input, select, textarea {
-  width: 96.5%;
+  width: 100%;
   padding: 12px;
   font-size: 1rem;
   margin-top: 6px;
@@ -91,67 +97,6 @@ button:hover {
   background-color: var(--highlight-dark);
 }
 
-nav {
-  width: 100%;
-  max-width: 800px;
-  padding: 0 30px;
-  height: 64px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 30px auto 0 auto;
-  background-color: var(--bg-container);
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-}
-
-
-nav .links {
-  display: flex;
-  gap: 20px;
-}
-
-nav a {
-  text-decoration: none;
-  color: var(--highlight);
-  font-weight: 500;
-  font-size: 1rem;
-}
-
-nav a:hover {
-  color: var(--highlight-dark);
-}
-
-.planta-card {
-  padding: 16px 0;
-  border-bottom: 1px solid var(--border);
-}
-
-ul {
-  list-style: none;
-  padding-left: 0;
-}
-
-img {
-  max-width: 100%;
-  border-radius: 12px;
-  margin-top: 10px;
-  border: 2px solid var(--border);
-}
-
-/* Animações */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes fadeInDown {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.darkmodebtn {
-   margin-left: 1%;
-}
 li button {
   margin-left: 10px;
   padding: 4px 8px;
@@ -166,41 +111,109 @@ li button {
 li button:hover {
   background-color: var(--highlight-dark);
 }
-.container-int {
-  justify-items: center;
-  margin-top: 2%;
-  padding: 30px;
-  background-color: var(--bg-container-int);
-  border-radius: 16px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
-  animation: fadeIn 0.6s ease;
+
+ul {
+  list-style: none;
+  padding-left: 0;
 }
+
+img {
+  max-width: 100%;
+  border-radius: 12px;
+  margin-top: 10px;
+  border: 2px solid var(--border);
+}
+
+/* Navbar */
+nav {
+  width: 100%;
+  max-width: 740px;
+  padding: 0 30px;
+  min-height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 30px auto 0 auto;
+  background-color: var(--bg-container);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+nav .links {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--highlight);
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+nav a:hover {
+  color: var(--highlight-dark);
+}
+
+.darkmodebtn {
+  margin-left: 1%;
+}
+
+/* Cartões */
+.planta-card {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+/* Animações */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsivo */
 @media (max-width: 768px) {
   nav {
     flex-direction: column;
     align-items: stretch;
-    gap: 8px;
+  }
+
+  nav .links {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
   }
 
   nav a,
-  nav button {
+  .darkmodebtn {
     width: 100%;
     text-align: center;
   }
 
   .container {
-    padding: 12px;
+    padding: 20px;
+    margin: 10px;
   }
 
-  h1, h2 {
+  .container-int {
+    padding: 20px;
+    margin: 10px;
+  }
+
+  h1, h2, h3 {
     font-size: 1.2rem;
-    text-align: center;
   }
 
-  img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: 0 auto;
+  button {
+    width: 100%;
   }
 }
