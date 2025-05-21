@@ -36,7 +36,7 @@ export function DetalhePlanta() {
       await api.post("/cuidados", {
         tipo: novoCuidado.tipo,
         dataProgramada: novoCuidado.data,
-        plantaId: id
+        plantaId: Number(id),
       });
       alert("Cuidado agendado com sucesso!");
       const updated = await api.get(`/plantas/${id}`);
