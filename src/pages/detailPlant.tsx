@@ -77,13 +77,30 @@ export function DetalhePlanta() {
 
       <h2>📋 Histórico de Cuidados</h2>
       <ul>
-        {planta.cuidados.map(c => (
-          <li key={c.id}>
-            <strong>{c.tipo}</strong> – programado para {new Date(c.dataProgramada).toLocaleDateString()} –
-            {c.realizado ? ` Realizado em ${new Date(c.dataRealizacao!).toLocaleDateString()}` : " Pendente"}
-          </li>
-        ))}
-      </ul>
+  {planta.cuidados.map(c => (
+    <li key={c.id}>
+      <strong>{c.tipo}</strong> – programado para {new Date(c.dataProgramada).toLocaleDateString()} –
+      {c.realizado
+        ? ` Realizado em ${new Date(c.dataRealizacao!).toLocaleDateString()}`
+        : <>
+            <span> Pendente </span>
+            <button onClick={async () => {
+              try {
+                await api.put(`/cuidados/${c.id}/realizar`);
+                const updated = await api.get(`/plantas/${id}`);
+                setPlanta(updated.data);
+              } catch {
+                alert("Erro ao marcar como realizado.");
+              }
+            }}>
+              ✅ Marcar como feito
+            </button>
+          </>
+      }
+    </li>
+  ))}
+</ul>
+
     </div>
   );
 }

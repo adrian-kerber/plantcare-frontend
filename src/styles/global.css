@@ -148,3 +148,17 @@ img {
 .darkmodebtn {
    margin-left: 1%;
 }
+li button {
+  margin-left: 10px;
+  padding: 4px 8px;
+  font-size: 0.9rem;
+  border-radius: 6px;
+  border: none;
+  background-color: var(--highlight);
+  color: white;
+  cursor: pointer;
+}
+
+li button:hover {
+  background-color: var(--highlight-dark);
+}
