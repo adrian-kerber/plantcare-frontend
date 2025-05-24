@@ -8,9 +8,16 @@ export function NovaPlanta() {
   const [dataAquisicao, setDataAquisicao] = useState("");
   const [observacoes, setObservacoes] = useState("");
   const [fotoUrl, setFotoUrl] = useState<string | null>(null);
+  const [carregandoImagem, setCarregandoImagem] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!fotoUrl) {
+      alert("Por favor, envie uma foto antes de cadastrar.");
+      return;
+    }
+
     try {
       await api.post("/plantas", {
         nome,
@@ -21,6 +28,7 @@ export function NovaPlanta() {
         fotoUrl
       });
       alert("Planta cadastrada com sucesso!");
+      // Aqui você pode limpar o formulário ou redirecionar se quiser
     } catch (err) {
       console.error(err);
       alert("Erro ao cadastrar planta.");
@@ -56,20 +64,22 @@ export function NovaPlanta() {
 
             const formData = new FormData();
             formData.append("foto", file);
+            setCarregandoImagem(true);
 
             try {
               const res = await api.post("/upload", formData, {
-                headers: {
-                  "Content-Type": "multipart/form-data",
-                },
+                headers: { "Content-Type": "multipart/form-data" },
               });
-
               setFotoUrl(res.data.imageUrl);
             } catch {
               alert("Erro ao fazer upload da imagem.");
+            } finally {
+              setCarregandoImagem(false);
             }
           }}
         />
+
+        {carregandoImagem && <p>📤 Enviando imagem...</p>}
 
         {fotoUrl && (
           <div style={{ marginTop: "12px" }}>
@@ -77,7 +87,9 @@ export function NovaPlanta() {
           </div>
         )}
 
-        <button type="submit">Cadastrar Planta</button>
+        <button type="submit" disabled={carregandoImagem}>
+          Cadastrar Planta
+        </button>
       </form>
     </div>
   );
