@@ -77,9 +77,9 @@ export function NovaPlanta() {
 />
 
 
-        {fotoFile && (
+        {fotoUrl && (
   <div style={{ marginTop: "12px" }}>
-    <img src={fotoFile.name} alt="Prévia" style={{ maxWidth: "200px", borderRadius: "10px" }} />
+    <img src={fotoUrl} alt="Prévia" style={{ maxWidth: "200px", borderRadius: "10px" }} />
   </div>
 )}
 
