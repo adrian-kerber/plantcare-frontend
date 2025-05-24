@@ -64,9 +64,7 @@ export function NovaPlanta() {
                 },
               });
 
-              const url = res.data.imageUrl;
-              const completa = url.startsWith("http") ? url : `https://plantcare-backend.onrender.com${url}`;
-              setFotoUrl(completa);
+              setFotoUrl(res.data.imageUrl);
             } catch {
               alert("Erro ao fazer upload da imagem.");
             }
