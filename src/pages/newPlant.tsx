@@ -2,13 +2,16 @@ import { useState } from "react";
 import { api } from "../api/api";
 
 
+
 export function NovaPlanta() {
   const [nome, setNome] = useState("");
   const [tipo, setTipo] = useState("");
   const [local, setLocal] = useState("");
   const [dataAquisicao, setDataAquisicao] = useState("");
   const [observacoes, setObservacoes] = useState("");
-  const [fotoUrl, setFotoUrl] = useState("");
+  const [fotoFile, setFotoFile] = useState<File | null>(null);
+  const [fotoUrl, setFotoUrl] = useState<string | null>(null);
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -48,14 +51,38 @@ export function NovaPlanta() {
         <label>Observações:</label>
         <textarea value={observacoes} onChange={(e) => setObservacoes(e.target.value)} />
 
-        <label>URL da Foto:</label>
-        <input type="url" value={fotoUrl} onChange={(e) => setFotoUrl(e.target.value)} />
+        <label>Foto:</label>
+<input
+  type="file"
+  accept="image/*"
+  onChange={async (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setFotoFile(file);
 
-        {fotoUrl && (
-          <div style={{ margin: "10px 0" }}>
-            <img src={fotoUrl} alt="Prévia" style={{ maxWidth: "200px" }} />
-          </div>
-        )}
+    const formData = new FormData();
+    formData.append("foto", file);
+
+    try {
+      const res = await api.post("/upload", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      setFotoUrl(res.data.imageUrl);
+    } catch {
+      alert("Erro ao fazer upload da imagem.");
+    }
+  }}
+/>
+
+
+        {fotoFile && (
+  <div style={{ marginTop: "12px" }}>
+    <img src={fotoFile.name} alt="Prévia" style={{ maxWidth: "200px", borderRadius: "10px" }} />
+  </div>
+)}
+
 
         <button type="submit">Cadastrar Planta</button>
       </form>
